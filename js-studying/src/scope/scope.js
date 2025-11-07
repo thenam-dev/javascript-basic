@@ -1,4 +1,4 @@
-console.log("SCOPE");
+console.log("SCOPE - PHẠM VI BIẾN");
 
 let globalVar = "Tôi là biến toàn cục";
 

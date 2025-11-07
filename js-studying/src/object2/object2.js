@@ -1,0 +1,1 @@
+console.log("OBJECT - UPDATE THUỘC TÍNH TRONG OBJECT");
