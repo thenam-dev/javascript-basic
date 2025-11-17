@@ -8,12 +8,16 @@ const fetchUsers = async () => {
   //   insert data to html
   const tbody = document.querySelector("#users tbody");
 
-  tbody.innerHTML = `
+  if (data && data.length) {
+    data.forEach((user, index) => {
+      tbody.innerHTML += `
         <tr>
-          <td>nam</td>
-          <td>nam</td>
-          <td>nam</td>
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
         </tr>`;
+    });
+  }
 };
 
 fetchUsers();
