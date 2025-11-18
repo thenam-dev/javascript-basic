@@ -41,7 +41,50 @@ const generateTodoTable = () => {
   if (todoListStr) {
     const todoList = JSON.parse(todoListStr);
     console.log(todoList);
+
+    //insert data to html
+    const tbody = document.querySelector("#todoList tbody");
+
+    if (todoList && todoList.length) {
+      todoList.forEach((todo, index) => {
+        tbody.innerHTML += `
+        <tr>
+          <td>${todo.id}</td>
+          <td>${todo.name}</td>
+          <td><button 
+          data-id=${todo.id} 
+          class="btn-delete"
+          >
+          Delete
+          </button></td>
+        </tr>`;
+      });
+    }
   }
 };
 
 generateTodoTable();
+
+const deleteBtns = document.querySelectorAll(".btn-delete");
+if (deleteBtns) {
+  deleteBtns.forEach((btn, index) => {
+    console.log(btn, index);
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      handleDeleteTodo(id);
+    });
+  });
+}
+
+const handleDeleteTodo = (id) => {
+  const todoListStr = localStorage.getItem("todo");
+  if (todoListStr) {
+    const todoList = JSON.parse(todoListStr);
+    console.log(todoList, id);
+
+    const newTodo = todoList.filter((todo, index) => todo.id + "" !== id);
+
+    localStorage.setItem("todo", JSON.stringify(newTodo));
+    window.location.reload();
+  }
+};
